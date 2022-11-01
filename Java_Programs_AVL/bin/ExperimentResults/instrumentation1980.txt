@@ -1,2 +1,0 @@
-Number of insertion-related comparison operations: 12142
-Number of search-related comparison operations: 22061
