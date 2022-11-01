@@ -1,0 +1,86 @@
+
+*** These modified files were found in JOE when it aborted on Fri Apr  1 10:22:24 2022
+*** JOE was aborted by UNIX signal 1
+
+*** File 'HashTable.java'
+class HashTable 
+{
+   // hash table size
+   int hashTableSize = 37;   
+
+   // array to store items
+   String [] hashTableArray;
+   // for counting the number of additional comparisons due to collisions
+   int collisions;
+   
+   // constructor
+   public HashTable () 
+   {
+      hashTableArray = new String [hashTableSize];
+      for ( int i=0; i<hashTableSize; i++ )
+         hashTableArray[i] = "";
+      collisions = 0;
+   }
+   
+   // return number of additional collision comparisons
+   public int getCollisions ()
+   { return collisions; }
+   
+   // hash function based on external weights
+   public int hash ( String s )
+   {
+      HashTableFunctions htf = new HashTableFunctions ();
+      int val = 0;
+      for ( int i=0; i<9; i++ )
+         val += htf.weights[i] * s.charAt (i);
+      return val % hashTableSize;   
+   }   
+   
+   // inserts string s into the hash table
+   public void insert ( String s )
+   {
+      int h = hash (s);
+      while (! hashTableArray[h].equals (""))
+      {
+         h = (h+1) % hashTableSize;
+         collisions++;
+      }
+      //delete from here
+      if (collisions == 0) 
+         weighPrint();
+      //to here
+      hashTableArray[h] = s;
+   }
+   
+   // stub to point to external function
+   boolean find ( String s )
+   {
+      HashTableFunctions htf = new HashTableFunctions ();
+      return htf.find (s, hash (s), hashTableSize, hashTableArray);
+   }
+   
+   public void weighPrint () {
+      HashTableFunctions htf = new HashTableFunctions ();
+      for ( int l=0; l<9; l++  )
+         System.out.print(htf.weights[l]);
+   }
+}
+
+*** File '(Unnamed)'
+TestHashTable.java
+HashTable.java
+TestHashTable.java
+HashTableFunctions.java
+HashTableFunctions.java
+TestHashTable.java
+TestHashTable.java
+HashTable.java
+TestHashTable.java
+TestHashTable.java
+HashTable.java
+
+*** File '* Startup Log *'
+Processing '/etc/joe/joerc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/joerc
